@@ -1,0 +1,36 @@
+export type Tab = 'home' | 'guide' | 'cinema' | 'explore' | 'profile'
+export type IconName = 'home' | 'compass' | 'cinema' | 'explore' | 'profile' | 'arrow' | 'chevron' | 'close' | 'search' | 'pin' | 'audio' | 'robot' | 'route' | 'play' | 'pause' | 'check' | 'heart' | 'volume' | 'back' | 'signal' | 'wifi' | 'battery' | 'settings' | 'clock' | 'expand' | 'download' | 'book' | 'caption'
+export const navigation: { id: Tab; label: string; icon: IconName }[] = [
+  { id: 'home', label: '发现', icon: 'home' },
+  { id: 'guide', label: '导览', icon: 'compass' },
+  { id: 'cinema', label: '光影', icon: 'cinema' },
+  { id: 'explore', label: '探索', icon: 'explore' },
+  { id: 'profile', label: '我的', icon: 'profile' },
+]
+export const exhibits = [
+  { id: 'departure', name: '征途启程', tag: '序厅', date: '1934年10月', place: '江西', minutes: 8, spirit: '理想与信念', description: '1934年10月，中央红军主力开始长征。一次艰难的战略转移，由此开启了一段改写历史的征程。', source: '内容依据中央党史和文献研究院公开长征史实整理。' },
+  { id: 'zunyi', name: '遵义会议', tag: '第二展厅', date: '1935年1月', place: '贵州遵义', minutes: 12, spirit: '独立自主 · 实事求是', description: '1935年1月，中共中央政治局在遵义召开扩大会议。会议集中解决了当时具有决定意义的军事和组织问题，是党的历史上一个生死攸关的转折点。', source: '内容依据遵义会议纪念馆公开史实整理。' },
+  { id: 'luding', name: '飞夺泸定桥', tag: '第三展厅', date: '1935年5月', place: '四川泸定', minutes: 10, spirit: '勇气与担当', description: '1935年5月，红军在长征途中夺取泸定桥，打开了继续北上的通道。让我们从桥梁、山川与行军路线中，理解这次行动面临的艰难条件。', source: '内容依据中国人民革命军事博物馆公开长征史实整理。' },
+  { id: 'snow', name: '雪山与草地', tag: '沉浸展厅', date: '1935年', place: '川西高原', minutes: 15, spirit: '坚韧与互助', description: '严寒、缺氧与给养不足，是红军翻越雪山、走过草地时面临的严峻挑战。前进的队伍相互扶持，在极端困难中坚持理想与信念。', source: '内容依据中央党史和文献研究院公开长征史实整理。' },
+  { id: 'reunion', name: '胜利会师', tag: '会师厅', date: '1936年10月', place: '甘肃', minutes: 10, spirit: '团结与奋进', description: '1936年10月，红军三大主力在甘肃会宁、静宁将台堡地区会师，标志着长征胜利结束。长征的足迹，成为留给后人的宝贵精神财富。', source: '内容依据中央党史和文献研究院公开长征史实整理。' },
+]
+export const routes = [
+  { title: '信仰之路', caption: '从战略转移，到胜利会师。', minutes: 60, stops: [0, 1, 2, 3, 4], tag: '经典路线' },
+  { title: '初见长征', caption: '把重要的历史，慢慢读懂。', minutes: 30, stops: [0, 1, 4], tag: '轻松漫游' },
+  { title: '同行的力量', caption: '在互动中，发现互助的意义。', minutes: 45, stops: [0, 2, 3, 4], tag: '亲子探索' },
+]
+export const films = [
+  { id: 'turn', title: '伟大的转折', category: '历史纪事', year: '1935', duration: 516, label: '从遵义，读懂一次转折。', description: '通过历史背景与路线变化，认识遵义会议及其历史意义。', motif: 'turn' },
+  { id: 'mountain', title: '山那边，是信念', category: '长征故事', year: '1935', duration: 312, label: '翻越雪山，也穿越时间。', description: '认识红军翻越雪山时面临的严寒与给养困难，理解坚持与互助的力量。', motif: 'mountain' },
+  { id: 'letter', title: '一封未寄出的家书', category: '人物叙事', year: '1934', duration: 400, label: '从一个人，走近一段历史。', description: '以家书为叙事意象，理解长征中的理想、牵挂与选择。此项为待制作的策划内容。', motif: 'letter' },
+]
+export const questions = [
+  { prompt: '1935年1月，中共中央政治局扩大会议在哪座城市召开？', options: ['瑞金', '遵义', '泸定', '会宁'], answer: 1, explanation: '遵义会议是党的历史上一个生死攸关的转折点。' },
+  { prompt: '中央红军主力于哪一年开始长征？', options: ['1931年', '1934年', '1936年', '1949年'], answer: 1, explanation: '1934年10月，中央红军主力开始长征。' },
+  { prompt: '泸定桥跨越的是哪一条河？', options: ['黄河', '金沙江', '大渡河', '湘江'], answer: 2, explanation: '泸定桥横跨大渡河，是红军继续北上的重要通道。' },
+  { prompt: '红军三大主力胜利会师发生在什么时候？', options: ['1934年10月', '1935年1月', '1935年5月', '1936年10月'], answer: 3, explanation: '1936年10月，红军三大主力会师，标志着长征胜利结束。' },
+  { prompt: '哪一项最能体现雪山草地行军中的团结精神？', options: ['各自前行', '相互扶持', '只顾速度', '放弃同伴'], answer: 1, explanation: '相互扶持、共同前进，是长征精神的重要体现。' },
+]
+export type Exhibit = typeof exhibits[number]
+export type Film = typeof films[number]
+export function formatTime(seconds: number) { return `${Math.floor(seconds / 60).toString().padStart(2, '0')}:${Math.floor(seconds % 60).toString().padStart(2, '0')}` }
