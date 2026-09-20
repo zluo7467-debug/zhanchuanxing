@@ -1,7 +1,7 @@
 import { Icon } from './Visuals'
 import type { IconName } from './content'
 import type { ReactNode } from 'react'
-export type Panel = { kind: 'route' | 'exhibit' | 'movie' | 'game'; index: number } | { kind: 'connect' | 'search' | 'settings' | 'collection' | 'card' }
+export type Panel = { kind: 'route' | 'exhibit' | 'movie' | 'game' | 'observation'; index: number } | { kind: 'connect' | 'search' | 'settings' | 'collection' | 'card' }
 export type Saved = { favorites: string[]; visited: string[]; completed: string[] }
 export function Action({ children, onClick, secondary = false, disabled = false, icon }: { children: ReactNode; onClick: () => void; secondary?: boolean; disabled?: boolean; icon?: IconName }) {
   return <button className={`action ${secondary ? 'secondary' : ''}`} onClick={onClick} disabled={disabled}>{icon && <Icon name={icon} size={18}/>}<span>{children}</span>{!icon && <Icon name="arrow" size={19}/>}</button>

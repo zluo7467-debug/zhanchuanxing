@@ -1,18 +1,18 @@
 export type Tab = 'home' | 'guide' | 'cinema' | 'explore' | 'profile'
 export type IconName = 'home' | 'compass' | 'cinema' | 'explore' | 'profile' | 'arrow' | 'chevron' | 'close' | 'search' | 'pin' | 'audio' | 'robot' | 'route' | 'play' | 'pause' | 'check' | 'heart' | 'volume' | 'back' | 'signal' | 'wifi' | 'battery' | 'settings' | 'clock' | 'expand' | 'download' | 'book' | 'caption'
 export const navigation: { id: Tab; label: string; icon: IconName }[] = [
-  { id: 'home', label: '发现', icon: 'home' },
+  { id: 'home', label: '首页', icon: 'home' },
   { id: 'guide', label: '导览', icon: 'compass' },
   { id: 'cinema', label: '光影', icon: 'cinema' },
-  { id: 'explore', label: '探索', icon: 'explore' },
-  { id: 'profile', label: '我的', icon: 'profile' },
+  { id: 'explore', label: '互动', icon: 'explore' },
+  { id: 'profile', label: '足迹', icon: 'route' },
 ]
 export const exhibits = [
   { id: 'departure', name: '征途启程', tag: '序厅', date: '1934年10月', place: '江西', minutes: 8, spirit: '理想与信念', description: '1934年10月，中央红军主力开始长征。一次艰难的战略转移，由此开启了一段改写历史的征程。', source: '内容依据中央党史和文献研究院公开长征史实整理。' },
   { id: 'zunyi', name: '遵义会议', tag: '第二展厅', date: '1935年1月', place: '贵州遵义', minutes: 12, spirit: '独立自主 · 实事求是', description: '1935年1月，中共中央政治局在遵义召开扩大会议。会议集中解决了当时具有决定意义的军事和组织问题，是党的历史上一个生死攸关的转折点。', source: '内容依据遵义会议纪念馆公开史实整理。' },
   { id: 'luding', name: '飞夺泸定桥', tag: '第三展厅', date: '1935年5月', place: '四川泸定', minutes: 10, spirit: '勇气与担当', description: '1935年5月，红军在长征途中夺取泸定桥，打开了继续北上的通道。让我们从桥梁、山川与行军路线中，理解这次行动面临的艰难条件。', source: '内容依据中国人民革命军事博物馆公开长征史实整理。' },
   { id: 'snow', name: '雪山与草地', tag: '沉浸展厅', date: '1935年', place: '川西高原', minutes: 15, spirit: '坚韧与互助', description: '严寒、缺氧与给养不足，是红军翻越雪山、走过草地时面临的严峻挑战。前进的队伍相互扶持，在极端困难中坚持理想与信念。', source: '内容依据中央党史和文献研究院公开长征史实整理。' },
-  { id: 'reunion', name: '胜利会师', tag: '会师厅', date: '1936年10月', place: '甘肃', minutes: 10, spirit: '团结与奋进', description: '1936年10月，红军三大主力在甘肃会宁、静宁将台堡地区会师，标志着长征胜利结束。长征的足迹，成为留给后人的宝贵精神财富。', source: '内容依据中央党史和文献研究院公开长征史实整理。' },
+  { id: 'reunion', name: '胜利会师', tag: '会师厅', date: '1936年10月', place: '甘肃会宁、将台堡（今属宁夏）', minutes: 10, spirit: '团结与奋进', description: '1936年10月，红军三大主力在会宁、将台堡地区会师，标志着长征胜利结束。将台堡当时属甘肃，今属宁夏。长征的足迹，成为留给后人的宝贵精神财富。', source: '参考中共中央党史和文献研究院公开长征史实；出处入口见史料层。' },
 ]
 export const routes = [
   { title: '信仰之路', caption: '从战略转移，到胜利会师。', minutes: 60, stops: [0, 1, 2, 3, 4], tag: '经典路线' },
