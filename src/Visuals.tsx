@@ -35,8 +35,16 @@ export function BrandMark({ size = 28 }: { size?: number }) {
   return <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M8 24C-1 12 23 22 14 9 12 6 16 2 19 3M23 8c10 12-14 2-5 15 2 3-2 7-5 6" stroke="currentColor" strokeWidth="2.7" strokeLinecap="round"/><circle cx="23" cy="5" r="2" fill="currentColor"/></svg>
 }
 
-export function JourneyArtwork({ compact = false }: { compact?: boolean }) {
+export function JourneyArtwork({ compact = false, progress }: { compact?: boolean; progress?: { step: number; total: number; finished: boolean } }) {
   const id = useId().replace(/:/g, '')
+  if (progress) {
+    const points = Array.from({ length: progress.total }, (_, i) => ({ x: 30 + i * 294 / (progress.total - 1), y: i % 2 === 0 ? 83 : 43 }))
+    return <svg className="journey-art progress-art" viewBox="0 0 354 116" fill="none" role="img" aria-label={progress.finished ? '路线已完成' : `路线进度：已完成${Math.max(0, progress.step)}站，共${progress.total}站`}>
+      <g stroke="currentColor" opacity=".07">{[18, 36, 54, 72, 90, 108].map(y => <path key={y} d={`M12 ${y}h330`}/>)}{[30, 104, 178, 252, 324].map(x => <path key={x} d={`M${x} 12v92`}/>)}</g>
+      {points.slice(1).map((p, i) => <path key={i} d={`M${points[i].x} ${points[i].y} C${points[i].x + 32} ${points[i].y},${p.x - 32} ${p.y},${p.x} ${p.y}`} stroke={progress.finished || i < progress.step ? 'var(--red)' : '#d4d5cf'} strokeWidth="3" strokeLinecap="round"/>)}
+      {points.map((p, i) => <g key={i}>{i === progress.step && !progress.finished && <circle className="current-pulse" cx={p.x} cy={p.y} r="13" fill="var(--red)" opacity=".12"/>}<circle cx={p.x} cy={p.y} r="5" fill={progress.finished || i <= progress.step ? 'var(--red)' : 'var(--surface)'} stroke={progress.finished || i <= progress.step ? 'var(--red)' : '#c7c9c2'} strokeWidth="2"/><text x={p.x} y={p.y + 22} textAnchor="middle" fontSize="9" fill="#767c73">{String(i + 1).padStart(2, '0')}</text></g>)}
+    </svg>
+  }
   return <svg className={`journey-art ${compact ? 'compact' : ''}`} viewBox="0 0 354 205" fill="none" aria-label="以朱红丝带描绘的长征路线意象" role="img">
     <defs>
       <linearGradient id={`ribbon-${id}`} x1="54" y1="195" x2="302" y2="27" gradientUnits="userSpaceOnUse"><stop stopColor="#9c292e"/><stop offset=".32" stopColor="#dd615e"/><stop offset=".56" stopColor="#b8343b"/><stop offset=".8" stopColor="#e47470"/><stop offset="1" stopColor="#a52c35"/></linearGradient>
