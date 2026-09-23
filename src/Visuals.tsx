@@ -27,6 +27,7 @@ export function Icon({ name, size = 22, className = '' }: { name: IconName; size
     download: <path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/>,
     book: <><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Zm0 0v14"/></>,
     caption: <><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9H7v6h3m8-6h-3v6h3"/></>,
+    flag: <><path d="M6 21V4"/><path d="M7 5c4-3 7 3 11 0v8c-4 3-7-3-11 0"/><path d="M4 21h5"/></>,
   }
   return <svg className={`icon ${className}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>
 }
@@ -35,14 +36,15 @@ export function BrandMark({ size = 28 }: { size?: number }) {
   return <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M8 24C-1 12 23 22 14 9 12 6 16 2 19 3M23 8c10 12-14 2-5 15 2 3-2 7-5 6" stroke="currentColor" strokeWidth="2.7" strokeLinecap="round"/><circle cx="23" cy="5" r="2" fill="currentColor"/></svg>
 }
 
-export function JourneyArtwork({ compact = false, progress }: { compact?: boolean; progress?: { step: number; total: number; finished: boolean } }) {
+export function JourneyArtwork({ compact = false, progress }: { compact?: boolean; progress?: { step: number; total: number; finished: boolean; marked?: number[] } }) {
   const id = useId().replace(/:/g, '')
   if (progress) {
     const points = Array.from({ length: progress.total }, (_, i) => ({ x: 30 + i * 294 / (progress.total - 1), y: i % 2 === 0 ? 83 : 43 }))
-    return <svg className="journey-art progress-art" viewBox="0 0 354 116" fill="none" role="img" aria-label={progress.finished ? '路线已完成' : `路线进度：已完成${Math.max(0, progress.step)}站，共${progress.total}站`}>
+    const marked = (i: number) => progress.marked ? progress.marked.includes(i) : progress.finished || i < progress.step
+    return <svg className="journey-art progress-art" viewBox="0 0 354 116" fill="none" role="img" aria-label={`路线旗标：已到达${progress.marked?.length ?? (progress.finished ? progress.total : Math.max(0, progress.step))}站，共${progress.total}站`}>
       <g stroke="currentColor" opacity=".07">{[18, 36, 54, 72, 90, 108].map(y => <path key={y} d={`M12 ${y}h330`}/>)}{[30, 104, 178, 252, 324].map(x => <path key={x} d={`M${x} 12v92`}/>)}</g>
-      {points.slice(1).map((p, i) => <path key={i} d={`M${points[i].x} ${points[i].y} C${points[i].x + 32} ${points[i].y},${p.x - 32} ${p.y},${p.x} ${p.y}`} stroke={progress.finished || i < progress.step ? 'var(--red)' : '#d4d5cf'} strokeWidth="3" strokeLinecap="round"/>)}
-      {points.map((p, i) => <g key={i}>{i === progress.step && !progress.finished && <circle className="current-pulse" cx={p.x} cy={p.y} r="13" fill="var(--red)" opacity=".12"/>}<circle cx={p.x} cy={p.y} r="5" fill={progress.finished || i <= progress.step ? 'var(--red)' : 'var(--surface)'} stroke={progress.finished || i <= progress.step ? 'var(--red)' : '#c7c9c2'} strokeWidth="2"/><text x={p.x} y={p.y + 22} textAnchor="middle" fontSize="9" fill="#767c73">{String(i + 1).padStart(2, '0')}</text></g>)}
+      {points.slice(1).map((p, i) => <path key={i} d={`M${points[i].x} ${points[i].y} C${points[i].x + 32} ${points[i].y},${p.x - 32} ${p.y},${p.x} ${p.y}`} stroke={marked(i) && marked(i+1) ? 'var(--red)' : '#d4d5cf'} strokeWidth="3" strokeLinecap="round"/>)}
+      {points.map((p, i) => <g key={i}>{i === progress.step && !progress.finished && <circle className="current-pulse" cx={p.x} cy={p.y} r="13" fill="var(--red)" opacity=".12"/>}<circle cx={p.x} cy={p.y} r="5" fill={marked(i) ? 'var(--red)' : 'var(--surface)'} stroke={marked(i) || i === progress.step ? 'var(--red)' : '#c7c9c2'} strokeWidth="2"/>{marked(i) && <path d={`M${p.x} ${p.y-7}v-18m0 1l12 3-12 5`} stroke="var(--red)" fill="var(--red)" strokeWidth="1.5"/>}<text x={p.x} y={p.y + 22} textAnchor="middle" fontSize="9" fill="#625a50">{String(i + 1).padStart(2, '0')}</text></g>)}
     </svg>
   }
   return <svg className={`journey-art ${compact ? 'compact' : ''}`} viewBox="0 0 354 205" fill="none" aria-label="以朱红丝带描绘的长征路线意象" role="img">

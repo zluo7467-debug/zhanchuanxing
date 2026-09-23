@@ -1,4 +1,4 @@
-const CACHE_NAME = 'zhanchuanxing-v3'
+const CACHE_NAME = 'zhanchuanxing-v5-atelier'
 const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './app-icon.svg']
 const scope = new URL(self.registration.scope)
 

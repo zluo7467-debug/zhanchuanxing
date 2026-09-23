@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5eddc">
+  <title>红星小队出发 · 绘本互动冒险</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg class="symbol-bank" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+ <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3.1 6.2 6.9 1-5 4.9 1.2 6.9L12 17.8l-6.2 3.2 1.2-6.9-5-4.9 6.9-1Z"/></symbol>
+ <symbol id="i-step" viewBox="0 0 24 24"><path d="M7 3C3 3 2 7 3 11s5 4 6 1S11 3 7 3Zm9 5c-4 0-4 5-3 8s5 4 6 1 1-9-3-9ZM5 17v3m11 1v1"/></symbol>
+ <symbol id="i-sound" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zM16 8q5 4 0 8m3-11q8 7 0 14"/></symbol>
+ <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5C9 2 4 3 2 4v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-2-1-7-2-10 1Zm0 0v15"/></symbol>
+ <symbol id="i-screen" viewBox="0 0 24 24"><path d="M3 3h18v13H3zM12 16v5m-5 0h10"/></symbol>
+ <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+ <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 12H4m6-6-6 6 6 6"/></symbol>
+ <symbol id="i-retry" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 8M4 3v7h7"/></symbol>
+ <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 4v16M17 4v16"/></symbol>
+ <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 5"/></symbol>
+ <symbol id="i-close" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+</defs></svg>
+<div id="app">
+ <header class="site-header">
+  <a class="brand" href="#" id="brandHome" aria-label="回到首页"><span class="brand-emblem"><svg class="icon"><use href="#i-star"/></svg></span><span>赤脉<span class="brand-small">儿童历史探索系列 · 01</span></span></a>
+  <div class="header-actions"><button class="quiet" id="aboutBtn"><svg class="icon"><use href="#i-book"/></svg>玩法与史料</button><button class="quiet" id="soundBtn" aria-pressed="false"><svg class="icon"><use href="#i-sound"/></svg><span>声音关</span></button><button class="quiet" id="projectionBtn" aria-pressed="false"><svg class="icon"><use href="#i-screen"/></svg><span>投影视图</span></button></div>
+ </header>
+ <main>
+  <section id="home" class="home">
+   <div class="home-copy"><div class="edition"><span></span> 2D 绘本 × 脚步互动</div><h1>红星小队<br><em>出发！</em><span class="title-spark">✦</span></h1><p class="lead">把历史，走成一段自己的故事。<br>跟着小星，在五段旅程里收集勇气与知识。</p><div class="feature-pills"><span>五种闯关玩法</span><span>可保存纪念卡</span><span>离线可玩</span></div><button id="startBtn" class="primary big">背好行囊，出发 <svg class="icon"><use href="#i-arrow"/></svg></button><p class="home-foot">方向键 / WASD 移动 · 点击地面也能走</p></div>
+   <div class="cover-wrap"><span class="cover-label">小星的长征学习手册</span><canvas id="cover" width="1000" height="850" role="img" aria-label="纸艺绘本插图：背着书包的小朋友、山川、铁索桥和固定的投影机器人"></canvas><span class="cover-sticker"><svg class="icon"><use href="#i-step"/></svg>走一步<br>懂一点历史</span><span class="cover-caption">一起出发 · 一起记住</span></div>
+   <div class="home-bottom"><p><b>一场有知识的冒险</b><span>装备认知 → 点亮时间线 → 桥面寻路 → 草地绕行 → 会师接力</span></p><div class="mini-note"><span class="green-dot"></span>机器人固定 · 小朋友移动</div></div>
+  </section>
+  <section id="play" hidden>
+   <div class="play-heading"><div><div class="edition" id="levelEyebrow">CHAPTER 01 / 05</div><h1 id="levelTitle">整装集合</h1></div><div class="play-tools"><span class="stamp-count" id="stampCount">0 / 5 枚星章</span><button class="round-btn" id="retryBtn" aria-label="重玩本关"><svg class="icon"><use href="#i-retry"/></svg></button><button class="round-btn" id="pauseBtn" aria-label="暂停游戏"><svg class="icon"><use href="#i-pause"/></svg></button></div></div>
+   <div class="game-layout">
+    <div class="board-column"><div class="board-shell"><div class="board-top"><span><i class="green-dot"></i> 小朋友位置 · 模拟识别</span><span id="sceneLabel">集合营地</span></div><div class="canvas-wrap"><canvas id="scene" width="1000" height="640" role="img" aria-label="投影互动场景"></canvas><div id="cellControls" class="cell-controls" aria-label="点击地面移动小朋友"></div></div><div class="board-bottom"><span id="positionLabel">起点 · 等待出发</span><span id="holdLabel">到达目标后站稳 0.8 秒</span></div></div><div class="legend"><span><i class="legend-foot"></i>脚印：下一步</span><span><i class="legend-target"></i>圆环：站稳识别</span><span><i class="legend-water"></i>水面 / 泥潭：绕行</span><span>关卡空间为互动示意</span></div></div>
+    <aside class="mission-panel"><div class="chapter-tag" id="modeTag">01 / 装备认知</div><h2 id="taskTitle">找到行军穿过的鞋</h2><p id="taskText" class="task-text"></p><div id="subProgress" class="sub-progress"></div><div class="speech-box" aria-live="polite"><div class="narrator"><span class="robot-icon"><i></i></span><b>小星提示</b></div><p id="feedback">准备好了吗？</p></div><div class="controls-help"><svg class="icon"><use href="#i-step"/></svg><span id="controlHint">方向键走动，或点击目标区</span></div><div class="dpad" aria-label="移动方向盘"><button data-dir="up" aria-label="向上走">↑</button><button data-dir="left" aria-label="向左走">←</button><button data-dir="down" aria-label="向下走">↓</button><button data-dir="right" aria-label="向右走">→</button></div><p class="small-note">只需慢走和站稳，无需奔跑、跳跃。</p><div id="mobileTargets" class="mobile-targets" aria-label="选择前往的目标"></div></aside>
+   </div><ol id="chapterNav" class="chapter-nav" aria-label="五关学习进度"></ol>
+  </section>
+  <section id="finish" class="finish" hidden><div class="finish-copy"><div class="edition">OUR LITTLE EXPLORER</div><h1>五枚星章，<br><em>一段成长。</em></h1><p class="lead">你已经完成了这趟学习旅程。<br>把勇气、互助与坚持，放进自己的纪念卡。</p><label class="name-label" for="nickname">给纪念卡起个名字 <span>可不填 · 仅保存在当前页面</span></label><input id="nickname" maxlength="10" placeholder="小小探索者" autocomplete="off"><div class="finish-actions"><button id="saveBtn" class="primary"><svg class="icon"><use href="#i-download"/></svg>保存纪念卡</button><button id="replayBtn" class="secondary">再探索一次</button></div><p id="saveStatus" class="small-note" aria-live="polite">电脑可下载 PNG；手机可长按右侧图片保存。</p></div><div class="certificate-wrap"><img id="certificate" alt="带有小朋友插图、昵称和五枚星章的长征小讲解员纪念卡"></div></section>
+ </main><footer><span>赤脉 · 红星小队出发</span><span>历史学习游戏 · 适合成人陪同体验</span></footer>
+</div>
+<dialog id="learnDialog" class="learn-dialog"><div class="learn-art"><canvas id="learnArt" width="720" height="370" role="img" aria-label="本关历史主题插图"></canvas><span id="learnStamp" class="learn-stamp">勇气星章</span></div><div class="dialog-content"><div class="edition" id="factDate"></div><h2 id="factTitle"></h2><p id="factBody" class="fact-body"></p><p id="factNote" class="fact-note"></p><div class="learn-footer"><button class="quiet" id="readBtn"><svg class="icon"><use href="#i-sound"/></svg>听小讲解</button><button id="continueBtn" class="primary">记住了，下一关 <svg class="icon"><use href="#i-arrow"/></svg></button></div></div></dialog>
+<dialog id="pauseDialog" class="simple-dialog"><div class="edition">TAKE A LITTLE BREAK</div><h2>小队休息一下</h2><p>进度留在这里，准备好了再出发。</p><button id="resumeBtn" class="primary">继续探索</button><button id="homeBtn" class="secondary">返回首页</button></dialog>
+<dialog id="aboutDialog" class="about-dialog"><button class="dialog-close quiet" id="closeAbout" aria-label="关闭说明"><svg class="icon"><use href="#i-close"/></svg></button><div class="edition">给陪伴孩子的你</div><h2>怎么玩，也要讲清楚。</h2><p>用方向键、WASD 或画面旁的方向盘控制小朋友。装备、时间线、会师关可以点击目标自动走近；桥面和草地关每次点击相邻格，逐步前进。站稳 0.8 秒确认，离开则取消识别。每关完成后阅读科普，再进入下一关。</p><h3>游戏与史实</h3><p>插图是原创 2D 教学示意，不是历史照片或精确地图。桥面脚印、草地踏点是游戏设计，不代表历史桥板数量或真实安全路线。角色是今天参与研学的小朋友；红领巾未作为长征时期制式装备。</p><p>第二关讲述中央红军“于都集结出发—遵义会议—到达吴起镇”的部分时间节点；第三、四关专题回顾泸定桥与草地。第五关区分会宁和将台堡两次会师，不将三大主力描述为同日抵达同一地点。</p><h3>史料与延伸阅读</h3><ul><li><a href="https://www.12371.cn/2021/08/12/ARTI1628761763661764.shtml" target="_blank" rel="noopener">共产党员网：于都——伟大长征从此起程</a></li><li><a href="https://www.12371.cn/2021/10/09/VIDE1633740241787329.shtml" target="_blank" rel="noopener">共产党员网 / 央视新闻：红军三大主力胜利会师</a></li><li>中共中央党史和文献研究院：《中国共产党简史》（2021），土地革命战争时期相关章节。</li></ul><h3>投影机器人接入说明</h3><p>当前是可独立运行的模拟游戏，不会调用摄像头。真实现场需位置传感器与地面标定，将孩子的脚部坐标接入游戏；机器人保持固定，投影本身不能检测位置。纪念卡只在设备本地生成。</p><p class="fact-note">语音使用浏览器提供的中文朗读能力；设备无可用语音时，请阅读同一份文字讲解。</p></dialog>
+<script src="art.js"></script><script src="game.js"></script>
+</body></html>

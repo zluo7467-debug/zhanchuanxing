@@ -36,5 +36,5 @@ try {
     $catalog += @{ id = $item.id; duration = $pcm.Length / 32000.0; cues = $cues }
     Write-Host ($item.id + ': ' + [Math]::Round($pcm.Length / 32000.0) + ' seconds')
   }
-  $catalog | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $audioDir 'narration.json') -Encoding utf8
+  [System.IO.File]::WriteAllText((Join-Path $audioDir 'narration.json'), ($catalog | ConvertTo-Json -Depth 5), (New-Object System.Text.UTF8Encoding($false)))
 } finally { $speaker.Dispose() }
